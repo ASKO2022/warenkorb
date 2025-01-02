@@ -1,0 +1,35 @@
+@import 'header.scss';
+@import 'card.scss';
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+}
+
+body {
+  font-family: Arial, sans-serif;
+
+}
+
+
+
+
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+@media (max-width: 768px) {
+  
+}
+
+
+h1 {
+  font-size: 2rem;
+}
+
