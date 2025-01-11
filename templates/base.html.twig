@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Warenkorb{% endblock %}</title>
+    <link rel="stylesheet" href="/css/output.css">
+</head>
+<body>
+<header class="header">
+    <div class="container">
+        <div class="header-inner">
+            <a href="/" class="header-logo">Warenkorb</a>
+            <nav class="nav">
+                <ul class="">
+                    <li class="nav-list">
+                        <a href="/products" class="nav-link">Produkte</a>
+                    </li>
+                    <li class="nav-list">
+                        <a href="/register" class="nav-link">Registrieren</a>
+                    </li>
+                    <li class="nav-list">
+                        <a href="/login" class="nav-link">Login</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</header>
+
+<main>
+    {% block content %}
+
+    {% endblock %}
+</main>
+
+<script src="/js/main.js"></script>
+<script src="/js/validation.js"></script>
+
+</body>
+</html>

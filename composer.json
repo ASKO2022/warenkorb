@@ -1,8 +1,17 @@
 {
-    "require": {
-        "slim/slim": "^4.14",
-        "slim/psr7": "^1.7",
-      "ext-json": "*",
-        "slim/twig-view": "^3.4"
+  "name": "warenkorb/cart",
+  "description": "A Slim Framework project",
+  "autoload": {
+    "psr-4": {
+      "Cart\\": "src/"
     }
+  },
+  "require": {
+    "slim/slim": "^4.14",
+    "slim/psr7": "^1.7",
+    "ext-json": "*",
+    "slim/twig-view": "^3.4",
+    "ext-pdo": "*",
+    "php-di/php-di": "^7.0"
+  }
 }

@@ -1,0 +1,21 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Login - Warenkorb{% endblock %}
+
+{% block content %}
+    <div class="login-container">
+        <h1>Login</h1>
+        <form id="loginForm" method="post" action="/login">
+            <label for="username">Benutzername</label>
+            <input type="text" id="username" name="username" required="required">
+            <label for="password">Passwort</label>
+            <input type="password" id="password" name="password" required="required">
+
+            <button type="submit" id="submit_btn">Login</button>
+        </form>
+
+        {% if errorMessage %}
+            <div id="errorMessage" class="error">{{ errorMessage }}</div>
+        {% endif %}
+    </div>
+{% endblock %}

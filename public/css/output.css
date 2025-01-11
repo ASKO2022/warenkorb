@@ -1,32 +1,346 @@
+@charset "UTF-8";
+/* Allgemeines Layout für den Header */
 .header {
-  padding: 1rem 0;
+  background-color: #2e8b57; /* Grüner Hintergrund */
+  padding: 15px 0;
+  color: #fff;
+  font-family: Arial, sans-serif;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
-.header .header-inner {
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.header-inner {
   display: flex;
-  flex-direction: row;
   justify-content: space-between;
+  align-items: center;
 }
-.header .header-inner .header-logo {
-  font-size: 2rem;
-  font-weight: 600;
+
+.header-logo {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #fff;
+  text-decoration: none;
+  letter-spacing: 1px;
+  transition: color 0.3s ease;
 }
-.header .header-inner .nav ul {
+
+.header-logo:hover {
+  color: #ffcc00; /* Goldene Farbe beim Hover */
+}
+
+/* Navigationsbereich */
+.nav {
+  display: flex;
+}
+
+.nav ul {
   display: flex;
   flex-direction: row;
 }
-.header .header-inner .nav ul .nav-list {
+
+.nav-list {
   list-style: none;
-  margin-right: 1rem;
+  margin-left: 20px;
 }
-.header .header-inner .nav ul .nav-list:last-child {
-  margin-right: 0;
-}
-.header .header-inner .nav ul .nav-list .nav-link {
-  color: #000000;
+
+.nav-link {
+  color: #fff;
   text-decoration: none;
+  font-size: 1.1rem;
+  padding: 10px;
+  display: block;
+  border-radius: 5px;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
-.header .header-inner .nav ul .nav-list .nav-link:hover {
-  color: #dca534;
+
+.nav-link:hover {
+  background-color: #3cb371; /* Hover-Effekt mit grünem Hintergrund */
+  color: #fff;
+}
+
+/* Responsives Design */
+@media (max-width: 768px) {
+  .header-inner {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .nav {
+    margin-top: 20px;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .nav-list {
+    margin-left: 0;
+    margin-bottom: 10px;
+  }
+  .nav-link {
+    padding: 8px 15px;
+  }
+}
+/* Container */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+/* Titel */
+.page-title {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+/* Produktliste */
+.product-list {
+  margin-bottom: 40px;
+}
+
+.product-items {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.product-item {
+  background-color: #f9f9f9;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.product-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.product-name {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #333;
+}
+
+.product-description {
+  color: #555;
+  margin: 10px 0;
+}
+
+.product-price {
+  font-size: 1.2rem;
+  color: #2e8b57;
+}
+
+.no-products {
+  font-size: 1.1rem;
+  color: #d9534f;
+}
+
+/* Formular zum Hinzufügen von Produkten */
+.add-product-form {
+  background-color: #f9f9f9;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  margin-top: 40px;
+}
+
+.form-title {
+  font-size: 1.8rem;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+label {
+  font-size: 1.1rem;
+  color: #333;
+  margin-bottom: 5px;
+  display: block;
+}
+
+.form-control {
+  width: 100%;
+  padding: 10px;
+  font-size: 1rem;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+textarea.form-control {
+  height: 120px;
+  resize: vertical;
+}
+
+.btn {
+  background-color: #2e8b57;
+  color: #fff;
+  padding: 10px 20px;
+  font-size: 1.1rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.btn:hover {
+  background-color: #3cb371;
+}
+
+/* Login Prompt */
+.login-prompt {
+  font-size: 1.1rem;
+  color: #d9534f;
+  margin-top: 20px;
+}
+
+/* Allgemeines Layout für das Login-Formular */
+.login-container {
+  max-width: 400px;
+  margin: 50px auto;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.login-container h1 {
+  text-align: center;
+  font-size: 2rem;
+  color: #333;
+  margin-bottom: 30px;
+}
+
+/* Formularelemente */
+label {
+  font-size: 1rem;
+  margin-bottom: 8px;
+  color: #333;
+}
+
+input[type=text], input[type=password] {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1rem;
+  box-sizing: border-box;
+}
+
+input[type=text]:focus, input[type=password]:focus {
+  border-color: #2e8b57; /* Grüner Rand beim Fokus */
+  outline: none;
+}
+
+/* Login-Button */
+button {
+  width: 100%;
+  padding: 12px;
+  background-color: #2e8b57;
+  color: white;
+  font-size: 1.1rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #3cb371; /* Hellerer grüner Hintergrund beim Hover */
+}
+
+/* Fehlernachricht */
+.error {
+  margin-top: 20px;
+  padding: 10px;
+  background-color: #ffcc00;
+  color: #333;
+  border: 1px solid #e6c700;
+  border-radius: 5px;
+  text-align: center;
+  font-size: 1rem;
+}
+
+/* Responsives Design */
+@media (max-width: 480px) {
+  .login-container {
+    padding: 15px;
+    width: 90%;
+  }
+  .login-container h1 {
+    font-size: 1.6rem;
+  }
+  input[type=text], input[type=password], button {
+    font-size: 1rem;
+  }
+}
+.register-container {
+  max-width: 400px;
+  margin: 50px auto;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+}
+
+.register-container h1 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.btn {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  background-color: #007bff;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background-color: #0056b3;
+}
+
+.error {
+  color: red;
+  margin-top: 10px;
+  text-align: center;
 }
 
 * {
