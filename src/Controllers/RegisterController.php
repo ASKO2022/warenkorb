@@ -8,7 +8,6 @@ use Slim\Psr7\Response;
 
 class RegisterController
 {
-    // Die Methode für die Registrierung des Nutzers
     public function register(Request $request, Response $response, $args)
     {
         $data = $request->getParsedBody();

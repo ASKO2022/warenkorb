@@ -33,6 +33,7 @@ $app->get('/login', function (Request $request, Response $response, $args) {
 });
 
 
+// Benutzer einloggen
 $app->post('/login', function (Request $request, Response $response, $args) {
     $data = $request->getParsedBody();
     $username = $data['username'] ?? '';
@@ -43,7 +44,7 @@ $app->post('/login', function (Request $request, Response $response, $args) {
 
     if (is_array($loginResult)) {
         $_SESSION['user'] = $loginResult;
-        return $response->withHeader('Location', '/products')->withStatus(302); // Weiterleitung zu /products
+        return $response->withHeader('Location', '/products')->withStatus(302);
     } else {
         return $this->get('view')->render($response, 'login.html.twig', [
             'errorMessage' => $loginResult
@@ -90,27 +91,24 @@ $app->post('/products', function (Request $request, Response $response, $args) {
     }
 });
 
-$app->get('/dashboard', function (Request $request, Response $response, $args) {
-    if (!isset($_SESSION['user'])) {
-        return $response->withHeader('Location', '/login')->withStatus(302);
-    }
-    return $this->get('view')->render($response, 'dashboard.html.twig', [
-        'user' => $_SESSION['user']
-    ]);
-});
 
-
+//Benutzer in Datenbank hinlegen
 $app->get('/register', function (Request $request, Response $response, $args) {
     return $this->get('view')->render($response, 'register.html.twig');
 });
 
+//Registrieren
 $app->post('/register', RegisterController::class . ':register');
 
+
+// TODO: Wenn Register erfolgreis registriert dann Login Formular ausbleden und Logout einblenden
+// Session deaktivieren
 $app->get('/logout', function (Request $request, Response $response, $args) {
     session_unset();
     session_destroy();
 
     return $response->withHeader('Location', '/login')->withStatus(302);
 });
+
 
 $app->run();

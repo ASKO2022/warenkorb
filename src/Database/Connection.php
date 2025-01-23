@@ -51,14 +51,7 @@ class Connection
             echo "Fehler beim Ausführen des SQL-Skripts: " . $e->getMessage() . "\n";
         }
     }
-
-
-    public function checkTableExists($tableName)
-    {
-        $stmt = $this->pdo->prepare("SHOW TABLES LIKE ?");
-        $stmt->execute([$tableName]);
-        return $stmt->rowCount() > 0;
-    }
 }
 
 $connection = new Connection();
+//$connection->executeSqlFromFile("database.sql");

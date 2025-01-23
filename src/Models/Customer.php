@@ -20,9 +20,9 @@ class Customer
     public function register($username, $email, $password)
     {
         try {
-            $stmt = $this->pdo->prepare("SELECT * FROM customers WHERE username = :username OR email = :email");
-            $stmt->bindParam(':username', $username);
-            $stmt->bindParam(':email', $email);
+            $stmt = $this->pdo->prepare("SELECT * FROM customers WHERE username = ? OR email = ?");
+            $stmt->bindParam(1, $username);
+            $stmt->bindParam(2, $email);
             $stmt->execute();
 
             if ($stmt->rowCount() > 0) {
@@ -31,10 +31,12 @@ class Customer
 
             $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
-            $stmt = $this->pdo->prepare("INSERT INTO customers (username, email, password) VALUES (:username, :email, :password)");
-            $stmt->bindParam(':username', $username);
-            $stmt->bindParam(':email', $email);
-            $stmt->bindParam(':password', $hashedPassword);
+            $stmt = $this->pdo->prepare("INSERT INTO customers (username, email, password) VALUES (?, ?, ?)");
+            $stmt->bindParam(1, $username);
+            $stmt->bindParam(2, $email);
+            $stmt->bindParam(3, $hashedPassword);
+            $stmt->execute();
+
 
             $stmt->execute();
             return "Registrierung erfolgreich!";
