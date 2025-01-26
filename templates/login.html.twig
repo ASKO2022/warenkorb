@@ -4,18 +4,25 @@
 
 {% block content %}
     <div class="login-container">
-        <h1>Login</h1>
-        <form id="loginForm" method="post" action="/login">
-            <label for="username">Benutzername</label>
-            <input type="text" id="username" name="username" required="required">
-            <label for="password">Passwort</label>
-            <input type="password" id="password" name="password" required="required">
+        {% if app.user %}
+            <h1>Willkommen, {{ app.user.username }}</h1>
+            <form method="post" action="/logout">
+                <button type="submit">Logout</button>
+            </form>
+        {% else %}
+            <h1 class="login-headline">Login</h1>
+            <form id="loginForm" method="post" action="/login">
+                <label for="username" class="login-input-label">Benutzername</label>
+                <input type="text" id="username" class="login-input" name="username" required="required">
+                <label for="password" class="login-input-label">Passwort</label>
+                <input type="password" id="password" class="login-input" name="password" required="required">
 
-            <button type="submit" id="submit_btn">Login</button>
-        </form>
+                <button type="submit" id="submit_btn" class="login-btn">Login</button>
+            </form>
 
-        {% if errorMessage %}
-            <div id="errorMessage" class="error">{{ errorMessage }}</div>
+            {% if errorMessage %}
+                <div id="errorMessage" class="error">{{ errorMessage }}</div>
+            {% endif %}
         {% endif %}
     </div>
 {% endblock %}

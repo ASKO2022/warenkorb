@@ -35,11 +35,12 @@ class Customer
             $stmt->bindParam(1, $username);
             $stmt->bindParam(2, $email);
             $stmt->bindParam(3, $hashedPassword);
-            $stmt->execute();
 
-
-            $stmt->execute();
-            return "Registrierung erfolgreich!";
+            if ($stmt->execute()) {
+                return "Registrierung erfolgreich!";
+            } else {
+                return "Fehler bei der Registrierung: Benutzer konnte nicht gespeichert werden.";
+            }
         } catch (PDOException $e) {
             return "Fehler bei der Registrierung: " . $e->getMessage();
         }

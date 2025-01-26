@@ -54,4 +54,4 @@ class Connection
 }
 
 $connection = new Connection();
-//$connection->executeSqlFromFile("database.sql");
+$connection->executeSqlFromFile("database.sql");
