@@ -5,8 +5,6 @@ session_start();
 use Cart\Controllers\LoginController;
 use Cart\Controllers\RegisterController;
 use Cart\Controllers\ProductController;
-use Cart\Models\Product;
-use Psr\Container\ContainerInterface;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Slim\Factory\AppFactory;
