@@ -2,70 +2,41 @@
 
 namespace Cart\Models;
 
-use PDO;
-
-use Cart\Database\Connection;
-use PDOException;
-
 class Customer
 {
     private $pdo;
+    private $name;
+    private $email;
+    private $password;
 
-    public function __construct()
+    public function __construct(string $name,string $email,string $password)
     {
-        $db = new Connection();
-        $this->pdo = $db->getPdo();
+        $this->name = $name;
+        $this->email = $email;
+        $this->password = $password;
     }
 
-    public function register($username, $email, $password)
-    {
-        try {
-            $stmt = $this->pdo->prepare("SELECT * FROM customers WHERE username = ? OR email = ?");
-            $stmt->bindParam(1, $username);
-            $stmt->bindParam(2, $email);
-            $stmt->execute();
-
-            if ($stmt->rowCount() > 0) {
-                return "Benutzername oder E-Mail existiert bereits.";
-            }
-
-            $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
-
-            $stmt = $this->pdo->prepare("INSERT INTO customers (username, email, password) VALUES (?, ?, ?)");
-            $stmt->bindParam(1, $username);
-            $stmt->bindParam(2, $email);
-            $stmt->bindParam(3, $hashedPassword);
-
-            if ($stmt->execute()) {
-                return "Registrierung erfolgreich!";
-            } else {
-                return "Fehler bei der Registrierung: Benutzer konnte nicht gespeichert werden.";
-            }
-        } catch (PDOException $e) {
-            return "Fehler bei der Registrierung: " . $e->getMessage();
-        }
+    public function getName() {
+        return $this->name;
     }
 
-    public function login($username, $password)
-    {
-        try {
-            $stmt = $this->pdo->prepare("SELECT * FROM customers WHERE username = :username");
-            $stmt->bindParam(':username', $username);
-            $stmt->execute();
+    public function getEmail() {
+        return $this->email;
+    }
 
-            if ($stmt->rowCount() == 0) {
-                return "Benutzername oder Passwort ist falsch.";
-            }
+    public function getPassword() {
+        return $this->password;
+    }
 
-            $user = $stmt->fetch(PDO::FETCH_ASSOC);
+    public function setName($name) {
+        $this->name = $name;
+    }
 
-            if (password_verify($password, $user['password'])) {
-                return $user; // Rückgabe des Benutzerobjekts für Sitzungsmanagement
-            } else {
-                return "Benutzername oder Passwort ist falsch.";
-            }
-        } catch (PDOException $e) {
-            return "Fehler beim Login: " . $e->getMessage();
-        }
+    public function setEmail($email) {
+        $this->email = $email;
+    }
+
+    public function setPassword($password) {
+        $this->password = $password;
     }
 }

@@ -8,16 +8,22 @@ use PDOException;
 class Connection
 {
     private $pdo;
+    private string $dbHost;
+    private string $dbName;
+    private string $dbUser;
+    private string $dbPassword;
+    private int $dbPort;
 
-    public function __construct()
+    public function __construct($dbHost, $dbName, $dbUser, $dbPassword, $dbPort)
     {
-        $dbHost = 'db';
-        $dbName = 'db';
-        $dbUser = 'db';
-        $dbPassword = 'db';
-        $dbPort = '3306';
+        $this->dbHost = $dbHost;
+        $this->dbName = $dbName;
+        $this->dbUser = $dbUser;
+        $this->dbPassword = $dbPassword;
+        $this->dbPort = $dbPort;
 
-        $dsn = "mysql:host=$dbHost;port=$dbPort;dbname=$dbName";
+
+        $dsn = "mysql:host=$this->dbHost;port=$this->dbPort;dbname=$this->dbName";
 
         try {
             $this->pdo = new PDO($dsn, $dbUser, $dbPassword);
@@ -53,5 +59,5 @@ class Connection
     }
 }
 
-$connection = new Connection();
-$connection->executeSqlFromFile("database.sql");
+$connection = new Connection("db", "db", "db", "db", 3306);
+//$connection->executeSqlFromFile("database.sql");

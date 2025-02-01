@@ -15,6 +15,14 @@
                                 <h2 class="product-name">{{ product.name }}</h2>
                                 <p class="product-description">{{ product.description }}</p>
                                 <p class="product-price">Preis: <strong>{{ product.price }} €</strong></p>
+
+                                <!-- Bearbeiten-Button (öffnet Modal) -->
+                                <button class="btn btn-edit" onclick="openEditModal('{{ product.id }}', '{{ product.name }}', '{{ product.description }}', '{{ product.price }}')">Bearbeiten</button>
+
+                                <!-- Löschen-Button -->
+                                <form action="/products/delete/{{ product.id }}" method="POST" class="delete-form">
+                                    <button type="submit" class="btn btn-delete">Löschen</button>
+                                </form>
                             </div>
                         </li>
                     {% endfor %}
@@ -22,6 +30,27 @@
             {% else %}
                 <p class="product-list-empty">Keine Produkte verfügbar.</p>
             {% endif %}
+        </div>
+
+        <!-- Bearbeiten-Modal -->
+        <div id="edit-modal" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeEditModal()">&times;</span>
+                <h2>Produkt bearbeiten</h2>
+                <form id="edit-form" action="/products/update" method="POST">
+                    <input type="hidden" name="id" id="edit-id">
+                    <label for="edit-name">Name:</label>
+                    <input type="text" name="name" id="edit-name" required>
+
+                    <label for="edit-description">Beschreibung:</label>
+                    <textarea name="description" id="edit-description" required></textarea>
+
+                    <label for="edit-price">Preis:</label>
+                    <input type="number" name="price" id="edit-price" step="0.01" required>
+
+                    <button type="submit" class="btn">Speichern</button>
+                </form>
+            </div>
         </div>
 
         {% if user is not empty %}

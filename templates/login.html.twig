@@ -4,8 +4,8 @@
 
 {% block content %}
     <div class="login-container">
-        {% if app.user %}
-            <h1>Willkommen, {{ app.user.username }}</h1>
+        {% if user %}
+            <h1>Willkommen, {{ user.username }}</h1>
             <form method="post" action="/logout">
                 <button type="submit">Logout</button>
             </form>

@@ -2,14 +2,13 @@
 
 namespace Cart\Controllers;
 
-use Cart\Models\Customer;
+use Cart\Services\LoginService;
 use Psr\Container\ContainerInterface;
 use Slim\Psr7\Request;
 use Slim\Psr7\Response;
 
 class LoginController
 {
-
     protected $container;
 
     public function __construct(ContainerInterface $container)
@@ -19,35 +18,35 @@ class LoginController
 
     public function showLoginForm(Request $request, Response $response, $args)
     {
-        $view = $this->container->get('view');
+        $user = $_SESSION['user'] ?? null;
 
-        return $view->render($response, 'login.html.twig');
+        $view = $this->container->get('view');
+        return $view->render($response, 'login.html.twig', [
+            'user' => $user,
+            'errorMessage' => null,
+        ]);
     }
-    public function login(Request $request, Response $response, $args)
+
+    public function login(Request $request, Response $response)
     {
         $data = $request->getParsedBody();
         $username = $data['username'] ?? '';
         $password = $data['password'] ?? '';
 
-        $customer = new Customer();
-        $loginResult = $customer->login($username, $password);
+        $loginService = $this->container->get(LoginService::class);
+        $loginResult = $loginService->login($username, $password);
 
-        if (is_array($loginResult)) {
+        if (is_object($loginResult)) {
             $_SESSION['user'] = $loginResult;
-            return $response->withHeader('Location', '/products')->withStatus(302);
-        } else {
-            return $response->getBody()->write($this->get('view')->render($response, 'login.html.twig', [
-                'errorMessage' => $loginResult
-            ]));
+
+            return $response->withHeader('Location', '/login')->withStatus(302);
         }
+
+        $view = $this->container->get('view');
+        return $view->render($response, 'login.html.twig', [
+            'user' => null,
+            'errorMessage' => $loginResult,
+        ]);
     }
-
-    public function logout(Request $request, Response $response, $args)
-    {
-        session_unset();
-        session_destroy();
-
-        return $response->withHeader('Location', '/login')->withStatus(302);
-    }
-
 }
+

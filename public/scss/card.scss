@@ -54,6 +54,170 @@
 
 }
 
+
+// DELETE
+.btn-delete {
+  background-color: #d9534f;
+  color: white;
+  padding: 10px 15px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin-top: 10px;
+}
+
+.btn-delete:hover {
+  background-color: #c9302c;
+}
+
+.delete-form {
+  margin-top: 10px;
+}
+
+
+// UPDATE
+
+/* Modal-Hintergrund */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6); /* Dim background */
+
+  justify-content: center;
+  align-items: center;
+  animation: fadeIn 0.3s ease-out;
+}
+
+/* Animation für das Modal */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Modal-Inhalt */
+.modal-content {
+  background-color: #fff;
+  padding: 20px 40px;
+  border-radius: 8px;
+  width: 500px;
+  text-align: left;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  animation: slideIn 0.3s ease-out;
+}
+
+/* Animation für das Modal-Innen */
+@keyframes slideIn {
+  from {
+    transform: translateY(-50px);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+/* Close button */
+.close {
+  font-size: 28px;
+  color: #888;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.close:hover {
+  color: #333;
+}
+
+/* Header */
+h2 {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+/* Form-Labels */
+label {
+  font-size: 1.1rem;
+  color: #333;
+  margin-bottom: 5px;
+  display: block;
+  margin-top: 15px;
+}
+
+/* Form-Inputs */
+input[type="text"], input[type="number"], textarea {
+  width: 100%;
+  padding: 10px;
+  font-size: 1rem;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+  margin-bottom: 15px;
+  transition: border-color 0.3s;
+}
+
+input[type="text"]:focus, input[type="number"]:focus, textarea:focus {
+  border-color: #2e8b57;
+  outline: none;
+}
+
+/* Textarea für Beschreibung */
+textarea {
+  height: 120px;
+  resize: vertical;
+}
+
+/* Submit Button */
+button[type="submit"] {
+  background-color: #2e8b57;
+  color: #fff;
+  padding: 12px 20px;
+  font-size: 1.1rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  width: 100%;
+}
+
+button[type="submit"]:hover {
+  background-color: #3cb371;
+}
+
+/* Optional: Responsivität */
+@media (max-width: 600px) {
+  .modal-content {
+    width: 90%;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+  }
+
+  button[type="submit"] {
+    font-size: 1rem;
+    padding: 10px;
+  }
+}
+
+
+
+// ADD
 .add-product-form {
   background-color: #f9f9f9;
   padding: 20px;

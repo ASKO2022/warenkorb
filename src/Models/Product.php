@@ -3,39 +3,48 @@
 namespace Cart\Models;
 
 use PDO;
-use Cart\Database\Connection;
 
 class Product
 {
+    private $id;
+    private $name;
+    private $description;
+    private $price;
     private $pdo;
 
-    public function __construct()
+    public function __construct($id, $name, $description, $price)
     {
-        $db = new Connection();
-        $this->pdo = $db->getPdo();
+        $this->id = $id;
+        $this->name = $name;
+        $this->description = $description;
+        $this->price = $price;
     }
 
-    public function addProduct($name, $description, $price)
-    {
-        try {
-            $stmt = $this->pdo->prepare("INSERT INTO products (name, description, price) VALUES (?, ?, ?)");
-            $stmt->bindParam(1, $name);
-            $stmt->bindParam(2, $description);
-            $stmt->bindParam(3, $price);
-
-            $stmt->execute();
-
-            return true;
-        } catch (\PDOException $e) {
-            return "Fehler beim Hinzufügen des Produkts: " . $e->getMessage();
-        }
+    public function getId(): ?int {
+        return $this->id;
     }
 
+    public function getName(): string {
+        return $this->name;
+    }
 
-    // Methode zum Abrufen aller Produkte
-    public function getAllProducts()
-    {
-        $stmt = $this->pdo->query("SELECT * FROM products");
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    public function getDescription(): string {
+        return $this->description;
+    }
+
+    public function getPrice(): float {
+        return $this->price;
+    }
+
+    public function setName(string $name) {
+        $this->name = $name;
+    }
+
+    public function setDescription(string $description) {
+        $this->description = $description;
+    }
+
+    public function setPrice(float $price) {
+        $this->price = $price;
     }
 }
