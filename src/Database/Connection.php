@@ -22,7 +22,6 @@ class Connection
         $this->dbPassword = $dbPassword;
         $this->dbPort = $dbPort;
 
-
         $dsn = "mysql:host=$this->dbHost;port=$this->dbPort;dbname=$this->dbName";
 
         try {
@@ -40,10 +39,17 @@ class Connection
 
     public function executeSqlFromFile($filePath)
     {
-        $sql = file_get_contents($filePath);
+        $absoluteFilePath = __DIR__ . '/../../' . $filePath;
+
+        if (!file_exists($absoluteFilePath)) {
+            echo "Die SQL-Datei wurde nicht gefunden: $absoluteFilePath\n";
+            return;
+        }
+
+        $sql = file_get_contents($absoluteFilePath);
 
         if ($sql === false) {
-            echo "Fehler beim Laden der SQL-Datei: $filePath\n";
+            echo "Fehler beim Laden der SQL-Datei: $absoluteFilePath\n";
             return;
         }
 
